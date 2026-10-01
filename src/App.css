@@ -1,0 +1,1048 @@
+/* ===== Estructura general ===== */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding-top: var(--alto-navbar);
+}
+
+.contenedor {
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.angosto {
+  max-width: 860px;
+}
+
+.texto-centrado {
+  text-align: center;
+}
+
+.justificado {
+  text-align: justify;
+}
+
+.seccion {
+  padding: 64px 0;
+  background: #ffffff;
+}
+
+.seccion-corta {
+  padding: 40px 0 0;
+}
+
+.seccion h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 18px;
+}
+
+.seccion p {
+  color: var(--texto-suave);
+  font-size: 1.05rem;
+}
+
+.seccion p + p {
+  margin-top: 14px;
+}
+
+.intro {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.seccion .intro {
+  font-size: 1.15rem;
+}
+
+.texto-centrado .intro {
+  margin-bottom: 32px;
+}
+
+.lema {
+  font-weight: 700;
+  font-style: italic;
+  color: var(--azul-noche);
+}
+
+/* ===== Botones (rectangulares y azul oscuro, como el original) ===== */
+.boton {
+  display: inline-block;
+  padding: 14px 32px;
+  border-radius: 4px;
+  background: var(--azul-noche);
+  color: #ffffff;
+  font-family: var(--fuente-texto);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  border: 2px solid var(--azul-noche);
+  transition: background 0.2s, color 0.2s;
+}
+
+.boton:hover {
+  background: #ffffff;
+  color: var(--azul-noche);
+}
+
+/* ===== Navbar ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--alto-navbar);
+  background: var(--azul-noche);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-contenido {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #ffffff;
+  font-family: var(--fuente-texto);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.logo-imagen {
+  height: 44px;
+  width: auto;
+}
+
+.menu {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+/* Botón de idioma y hamburguesa, siempre visibles a la derecha */
+.navbar-acciones {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.idioma-boton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  background: transparent;
+  color: #ffffff;
+  font-family: var(--fuente-texto);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.idioma-boton:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #ffffff;
+}
+
+.idioma-boton svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.seccion .formulario-aviso {
+  font-size: 0.95rem;
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.menu a {
+  color: rgba(255, 255, 255, 0.8);
+  padding: 8px 14px;
+  font-size: 1rem;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.menu a:hover {
+  color: #ffffff;
+}
+
+.menu a.active {
+  color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+/* Botón hamburguesa: tres rayas que se convierten en una X */
+.menu-boton {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-boton span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  border-radius: 2px;
+  background: #ffffff;
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+.menu-boton.abierto span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-boton.abierto span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-boton.abierto span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ===== Portadas con imagen de fondo ===== */
+.portada {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 340px;
+  padding: 60px 0;
+  background-color: var(--azul-noche);
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  text-align: center;
+}
+
+.portada::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.portada .contenedor {
+  position: relative;
+}
+
+.portada-grande {
+  min-height: 520px;
+}
+
+.portada h1 {
+  color: #ffffff;
+  font-size: clamp(2rem, 5.5vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: 1px;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.portada-grande h1 {
+  font-size: clamp(2.6rem, 8vw, 5.3rem);
+}
+
+.portada p {
+  font-size: clamp(1.1rem, 2.6vw, 1.7rem);
+  font-weight: 300;
+  margin-top: 20px;
+}
+
+/* ===== Bandas de título (gris, azul oscuro o con imagen) ===== */
+.banda {
+  padding: 44px 0;
+  text-align: center;
+}
+
+.banda h2 {
+  font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+}
+
+.banda-clara {
+  background: #ffffff;
+  padding-bottom: 0;
+}
+
+.banda-gris {
+  background: var(--gris-banda);
+}
+
+.banda-oscura {
+  background: var(--azul-noche);
+}
+
+.banda-oscura h2,
+.banda-imagen h2 {
+  color: #ffffff;
+}
+
+.banda-imagen {
+  position: relative;
+  padding: 90px 0;
+  background-color: var(--azul-noche);
+  background-size: cover;
+  background-position: center;
+}
+
+.banda-imagen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.banda-imagen .contenedor {
+  position: relative;
+}
+
+/* ===== Grillas ===== */
+.grilla {
+  display: grid;
+  gap: 36px;
+  margin-top: 46px;
+}
+
+.grilla.sin-margen {
+  margin-top: 0;
+}
+
+.grilla-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grilla-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grilla-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* ===== Imágenes ===== */
+.imagen-vacia {
+  background: var(--gris-vacio);
+  border-radius: 6px;
+  min-height: 200px;
+}
+
+.imagen-columna {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.imagen-cuadrada {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.imagen-ancha {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.icono-servicio {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.icono-servicio.imagen-vacia {
+  min-height: 150px;
+}
+
+/* Columna con imagen arriba y texto centrado debajo */
+.columna-imagen {
+  text-align: center;
+}
+
+.columna-imagen h3 {
+  font-size: 1.25rem;
+  margin: 22px 0 10px;
+}
+
+.seccion .columna-imagen p {
+  font-size: 1rem;
+}
+
+/* ===== Columnas de solo texto (pasos, pilares, etapas) ===== */
+.paso {
+  text-align: center;
+}
+
+.paso-numero {
+  display: block;
+  font-family: var(--fuente-titulos);
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--azul-acento);
+  margin-bottom: 4px;
+}
+
+.paso h3 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  color: var(--azul-acento);
+}
+
+.seccion .paso p {
+  font-size: 1rem;
+}
+
+/* ===== Texto + imagen en dos columnas ===== */
+.dos-columnas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+/* ===== Proyectos ===== */
+.proyecto-numero {
+  display: block;
+  font-family: var(--fuente-titulos);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--azul-acento);
+  margin-bottom: 10px;
+}
+
+.seccion .etiquetas {
+  margin-top: 18px;
+  font-weight: 700;
+  color: var(--azul-acento);
+}
+
+.seccion .proyecto-estado {
+  margin: 10px 0 28px;
+}
+
+.subtitulo-proyecto {
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  color: var(--azul-acento);
+}
+
+.entregable {
+  padding: 28px;
+  border: 1px solid var(--gris-banda);
+  border-left: 5px solid var(--azul-noche);
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.entregable h3 {
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+}
+
+/* ===== Equipo ===== */
+/* Color de acento por área: --acento (línea e ícono), --acento-texto y --acento-fondo (etiqueta) */
+.area-web {
+  --acento: #2563eb;
+  --acento-texto: #1d4ed8;
+  --acento-fondo: #eaf1fe;
+}
+
+.area-identidad {
+  --acento: #14a38f;
+  --acento-texto: #0f766e;
+  --acento-fondo: #e3f5f1;
+}
+
+.area-implementacion {
+  --acento: #0ea5e9;
+  --acento-texto: #0369a1;
+  --acento-fondo: #e0f2fe;
+}
+
+.lista-equipo {
+  list-style: none;
+}
+
+.tarjeta-equipo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 34px 28px 30px;
+  background: #ffffff;
+  border: 1px solid #e3e6ee;
+  border-top: 4px solid var(--acento);
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(5, 3, 45, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-equipo:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(5, 3, 45, 0.12);
+}
+
+.equipo-icono {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  color: var(--acento-texto);
+  background: var(--acento-fondo);
+}
+
+.equipo-icono svg {
+  width: 22px;
+  height: 22px;
+}
+
+.tarjeta-equipo h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.equipo-rol {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: var(--acento-texto);
+  background: var(--acento-fondo);
+}
+
+/* Aparición al hacer scroll (la clase .visible la agrega useRevelar) */
+.revelar {
+  opacity: 0;
+}
+
+/* "backwards" solo aplica la animación mientras corre, así no bloquea el hover */
+.revelar.visible {
+  opacity: 1;
+  animation: aparecer 0.6s ease-out var(--retraso, 0ms) backwards;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revelar,
+  .revelar.visible {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* ===== Contacto ===== */
+.contacto {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.contacto-info h2 {
+  font-size: 1.8rem;
+}
+
+.contacto-info h3 {
+  font-family: var(--fuente-texto);
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: var(--texto);
+  margin-bottom: 24px;
+}
+
+.seccion .contacto-info p + p {
+  margin-top: 14px;
+}
+
+.contacto-info strong {
+  color: var(--azul-noche);
+}
+
+.contacto-info a {
+  color: var(--azul-acento);
+  word-break: break-all;
+}
+
+.contacto-formulario h3 {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+}
+
+.contacto-formulario iframe {
+  width: 100%;
+  height: 900px;
+  border: none;
+}
+
+/* ===== Footer ===== */
+.footer {
+  background: var(--azul-noche);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 44px 0 20px;
+}
+
+.footer-contenido {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  height: 48px;
+  width: auto;
+}
+
+.footer-lema {
+  font-style: italic;
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+
+.footer-datos p + p {
+  margin-top: 8px;
+}
+
+.footer-datos a:hover,
+.footer-enlaces a:hover {
+  color: var(--verde-logo);
+}
+
+.footer-enlaces {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-copy {
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 32px;
+  padding-top: 20px;
+}
+
+/* ===== Accesibilidad: botón flotante y panel ===== */
+/* Medidas en px para que el panel no cambie de tamaño al agrandar el texto del sitio */
+:focus-visible {
+  outline: 3px solid #0ea5e9;
+  outline-offset: 2px;
+}
+
+.a11y-boton {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 150;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  padding: 0;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  background: var(--azul-acento);
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(5, 3, 45, 0.35);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.a11y-boton:hover {
+  transform: scale(1.06);
+  background: var(--azul-noche);
+}
+
+.a11y-boton svg {
+  width: 32px;
+  height: 32px;
+}
+
+.a11y-panel {
+  position: fixed;
+  left: 16px;
+  bottom: 82px;
+  z-index: 150;
+  width: 300px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  padding: 18px;
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--texto);
+  font-family: var(--fuente-texto);
+  font-size: 15px;
+  box-shadow: 0 18px 40px rgba(5, 3, 45, 0.28);
+}
+
+.a11y-panel[hidden] {
+  display: none;
+}
+
+.a11y-encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.a11y-encabezado h2 {
+  font-size: 18px;
+}
+
+.a11y-panel button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.a11y-cerrar {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  font-size: 16px;
+}
+
+.a11y-cerrar:hover {
+  background: #f0f2f7;
+}
+
+.a11y-grupo {
+  padding: 12px;
+  border-radius: 10px;
+  background: #f4f6fa;
+  margin-bottom: 10px;
+}
+
+.a11y-grupo > span {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.a11y-tamanos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.a11y-tamanos button {
+  width: 46px;
+  height: 38px;
+  border: 1px solid #cfd5e2;
+  border-radius: 8px;
+  background: #ffffff;
+  font-weight: 700;
+}
+
+.a11y-tamanos button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.a11y-nivel {
+  font-size: 14px;
+}
+
+.a11y-opciones {
+  list-style: none;
+}
+
+.a11y-opcion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 11px 12px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  text-align: left;
+}
+
+.a11y-opcion:hover {
+  background: #f4f6fa;
+}
+
+/* Interruptor visual: gris apagado, azul encendido */
+.a11y-interruptor {
+  position: relative;
+  flex-shrink: 0;
+  width: 38px;
+  height: 22px;
+  border-radius: 999px;
+  background: #c3c9d6;
+  transition: background 0.2s;
+}
+
+.a11y-interruptor::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: transform 0.2s;
+}
+
+.a11y-opcion[aria-pressed='true'] .a11y-interruptor {
+  background: var(--azul-acento);
+}
+
+.a11y-opcion[aria-pressed='true'] .a11y-interruptor::after {
+  transform: translateX(16px);
+}
+
+.a11y-restablecer {
+  width: 100%;
+  margin-top: 12px;
+  padding: 11px;
+  border: 2px solid var(--azul-noche);
+  border-radius: 8px;
+  background: #ffffff;
+  font-weight: 700;
+}
+
+.a11y-restablecer:hover {
+  background: var(--azul-noche);
+  color: #ffffff !important;
+}
+
+/* ===== Accesibilidad: efectos de cada opción (clases en <html>) ===== */
+
+/* Alto contraste: fondo negro, texto blanco y enlaces amarillos */
+html.a11y-contraste *:not(img):not(svg):not(svg *) {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+html.a11y-contraste a,
+html.a11y-contraste a *,
+html.a11y-contraste button {
+  color: #ffeb3b !important;
+}
+
+html.a11y-contraste .boton,
+html.a11y-contraste .a11y-boton,
+html.a11y-contraste .a11y-panel button {
+  border: 2px solid #ffeb3b !important;
+}
+
+html.a11y-contraste .menu-boton span,
+html.a11y-contraste .a11y-interruptor::after {
+  background-color: #ffffff !important;
+}
+
+html.a11y-contraste .a11y-interruptor {
+  border: 2px solid #ffffff !important;
+}
+
+html.a11y-contraste .a11y-opcion[aria-pressed='true'] .a11y-interruptor {
+  background-color: #ffeb3b !important;
+}
+
+html.a11y-contraste :focus-visible {
+  outline-color: #ffeb3b;
+}
+
+/* Escala de grises: se aplica a todo menos al widget (un filtro en su contenedor rompería position: fixed) */
+html.a11y-grises #root > :not(.a11y),
+html.a11y-grises .a11y-boton,
+html.a11y-grises .a11y-panel {
+  filter: grayscale(1);
+}
+
+/* Subrayar enlaces */
+html.a11y-subrayar a {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+/* Fuente legible para dislexia */
+html.a11y-legible * {
+  font-family: 'Atkinson Hyperlegible', Verdana, sans-serif !important;
+  letter-spacing: 0.03em;
+  word-spacing: 0.08em;
+}
+
+/* Pausar animaciones y transiciones */
+html.a11y-pausar *,
+html.a11y-pausar *::before,
+html.a11y-pausar *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+html.a11y-pausar .revelar {
+  opacity: 1;
+}
+
+/* ===== Responsive ===== */
+/* Pantallas medianas: el logo ya incluye el nombre, así queda lugar para el menú y el idioma */
+@media (max-width: 1100px) {
+  .logo span {
+    display: none;
+  }
+
+  .menu a {
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .grilla-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .menu-boton {
+    display: flex;
+  }
+
+  .menu {
+    position: absolute;
+    top: var(--alto-navbar);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 20px 18px;
+    background: var(--azul-noche);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+    display: none;
+  }
+
+  .menu.abierto {
+    display: flex;
+  }
+
+  .menu a {
+    padding: 12px 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .menu a.active {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+    font-weight: 700;
+  }
+
+  .grilla-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dos-columnas,
+  .contacto {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .portada-grande {
+    min-height: 380px;
+  }
+}
+
+@media (max-width: 600px) {
+  .seccion {
+    padding: 48px 0;
+  }
+
+  .seccion-corta {
+    padding: 32px 0 0;
+  }
+
+  .banda-imagen {
+    padding: 64px 0;
+  }
+
+  .portada {
+    min-height: 260px;
+  }
+
+  .logo span {
+    display: none;
+  }
+
+  .grilla-2,
+  .grilla-3,
+  .grilla-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .justificado {
+    text-align: left;
+  }
+
+  .contacto-formulario iframe {
+    height: 1000px;
+  }
+
+  .footer-contenido {
+    flex-direction: column;
+  }
+
+  /* Espacio para que el botón de accesibilidad no tape el pie de página */
+  .footer {
+    padding-bottom: 84px;
+  }
+}

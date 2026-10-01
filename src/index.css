@@ -1,0 +1,50 @@
+/* Colores y tipografías tomados del sitio original en Google Sites */
+:root {
+  --azul-noche: #05032d;
+  --azul-oscuro: #040224;
+  --azul-acento: #1c4587;
+  --verde-logo: #8fcfb6;
+  --texto: #212121;
+  --texto-suave: #424242;
+  --gris-banda: #e6e6e6;
+  --gris-vacio: #bebebe;
+  --alto-navbar: 76px;
+  --fuente-titulos: 'Montserrat', Arial, sans-serif;
+  --fuente-texto: 'Lato', 'Segoe UI', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: var(--alto-navbar);
+}
+
+body {
+  font-family: var(--fuente-texto);
+  color: var(--texto);
+  background: #ffffff;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fuente-titulos);
+  line-height: 1.25;
+  color: var(--azul-noche);
+}
